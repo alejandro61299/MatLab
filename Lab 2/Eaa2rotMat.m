@@ -2,7 +2,7 @@ function [rotationMatrix] = Eaa2rotMat (rotationAxis,angle)
 %This method generates the rotation matrix that rotates around that axis a
 %certain angle
 %INFO: Angle must be in degrees
-if (isColumn(rotationAxis) == 0)
+if (iscolumn(rotationAxis) == 0)
     rotationAxis = rotationAxis';
 end
 rotationAxis.normalize();
