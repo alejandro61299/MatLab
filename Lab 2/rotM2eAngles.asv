@@ -1,8 +1,0 @@
-function [anglePhi, angleTheta, anglePsi] = rotM2eAngles(rMat)
-%rotM2eAngles: Gets a rotation matrix and returns the euler angles
-anglePsi = asind(-rMat(3:1));
-anglePhi = 0;
-angleTheta = atan2d (rMat(2:1) / cosd(anglePsi) , rMat(1:1) / cosd(anglePsi));
-anglePsi = atan
-end
-
