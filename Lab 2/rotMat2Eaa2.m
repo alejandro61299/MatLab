@@ -13,6 +13,7 @@ elseif angle == 180
     axis(1) = sqrt((rMatrix(1,1) + 1) / 2);
     axis(2) = sqrt((rMatrix(2,2) + 1) / 2);
     axis(3) = sqrt((rMatrix(3,3) + 1) / 2);
+    axis = axis / sqrt(axis(1) * axis(1) + axis(2) * axis(2) + axis(3) * axis(3));
     flag = 1;
 else
     %R = I * cos(a) + (1 - cos(a)) * u * u' + sin(a) * [u]
@@ -20,10 +21,11 @@ else
     axis(1) =  stoichMatrix(3,2);
     axis(2) =  stoichMatrix(1,3);
     axis(3) =  stoichMatrix(2,1);
+    axis = axis / sqrt(axis(1) * axis(1) + axis(2) * axis(2) + axis(3) * axis(3));
     flag = 1;
 end
 
-axis = axis / sqrt(axis(1) * axis(1) + axis(2) * axis(2) + axis(3) * axis(3));
+
 
 
 end
