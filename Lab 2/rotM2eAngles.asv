@@ -1,15 +1,15 @@
 function [anglePhi, angleTheta, anglePsi, flag] = rotM2eAngles(rMat)
 %rotM2eAngles: Gets a rotation matrix and returns the euler angles
 %flag
-%   =  1 sin(angleTheta) = -1
-%   = -1 sin(angleTheta) = 1
-%   =  0 sin(angleTheta) ~= 1 | -1
+%=  1 sin(angleTheta) = -1
+%= -1 sin(angleTheta) = 1
+%=  0 sin(angleTheta) ~= 1 | -1
 
 if -rMat(3,1) == 1
     flag = -1;
     anglePhi = 0;
     angleTheta = asind(1);
-    yPart = (cosd(anglePhi) * sind(angleTheta)) / sind(anglePhi);
+    yPart = 
     anglePsi = 
 elseif -rMat(3,1) == -1
     flag = 1;
