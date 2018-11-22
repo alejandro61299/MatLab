@@ -8,7 +8,7 @@ function [anglePhi, angleTheta, anglePsi, flag] = rotM2eAngles(rMat)
  %angleTheta(2)= asind(-rMat(3,1));
  %angleTheta(1) = -angleTheta(2);
  angleTheta(1)= asind(-rMat(3,1));
- angleTheta(2) = angleTheta(1) + 180;
+ angleTheta(2) =  angleTheta(1) + 180 ;
 
 if rMat(3,1) == 1
     flag = -1;
