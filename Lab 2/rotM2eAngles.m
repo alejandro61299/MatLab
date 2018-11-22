@@ -28,12 +28,7 @@ else
     anglePhi(1) = atan2d(rMat(3,2)/cosd(angleTheta(1)), rMat(3,3)/cosd(angleTheta(1)));
     anglePsi(2) = atan2d(rMat(2,1)/cosd(angleTheta(2)), rMat(1,1)/cosd(angleTheta(2)));
     anglePhi(2) = atan2d(rMat(3,2)/cosd(angleTheta(2)), rMat(3,3)/cosd(angleTheta(2)));
-    
 end
 
 end
-
-%anglePsi = atan2d(-rMat(3,1), rMat(3,3));
-% The 3:3 element is multiplied by cos(phi), we would divide it to get the
-% value of cos(psi), but cos(0) = 1, so it's not necessary
 
