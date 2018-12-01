@@ -261,9 +261,9 @@ hold on;
 %Calculate and plot the vector
 %- Get the vectors and transform them to quaternions before multiplying
 angle = get(handles.slider_angle, 'Value');
-uvec = [str2double(get(handles.edit_text_u_1));
-        str2double(get(handles.edit_text_u_2));
-        str2double(get(handles.edit_text_u_3))];
+uvec = [str2double(get(handles.edit_text_u_1, 'String'));
+        str2double(get(handles.edit_text_u_2, 'String'));
+        str2double(get(handles.edit_text_u_3, 'String'))];
 uvec = uvec / norm(uvec);
 uvec = sind(angle * 0.5) * uvec;
 uquat = [cosd(angle * 0.5);
@@ -271,9 +271,9 @@ uquat = [cosd(angle * 0.5);
         uvec(2);
         uvec(3)];
 vquat = [0;
-         str2double(get(handles.edit_text_v_1));
-         str2double(get(handles.edit_text_v_2));
-         str2double(get(handles.edit_text_v_3))];
+         str2double(get(handles.edit_text_v_1, 'String'));
+         str2double(get(handles.edit_text_v_2, 'String'));
+         str2double(get(handles.edit_text_v_3, 'String'))];
 %- Multiply the quaternions
 rquat = MultiplyQuat(uquat, vquat);
 uquat(2:end) = -uquat(2:end);
@@ -290,3 +290,4 @@ axis off;
 pbaspect([1 1 1]);
 daspect([1 1 1]);
 set(gca,'CameraPosition',[2 2 2]);
+hold off;
