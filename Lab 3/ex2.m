@@ -170,13 +170,15 @@ function pushbutton_calculate_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton_calculate (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-x_0 = str2dobule(get(handles.edit_x_0, 'String'));
-y_0 = str2dobule(get(handles.edit_y_0, 'String'));
-v_0 = str2dobule(get(handles.slider_velocity, 'Value'));
-angle_0 = str2double(get(handles.slider_angle, 'Value'));
-g = 9.8;
+
+%Get all necessary input
+x_0 = str2double(get(handles.edit_x_0, 'String'));
+y_0 = str2double(get(handles.edit_y_0, 'String'));
+v_0 = get(handles.slider_velocity, 'Value');
+angle_0 = get(handles.slider_angle, 'Value');
 
 %Calculate range
+g = 9.8;
 %- We get the value of t when y(t)=0 (touching the ground)
 a = y_0;
 b = v_0 * sind(angle_0);
@@ -188,3 +190,10 @@ end
 %- We use t to calculate x in that time
 x = x_0 + t * v_0 * cosd(angle_0);
 set(handles.text_range, 'String', num2str(x));
+
+%Calculate the max height
+%- We get the value of t when v_y = 0;
+t = (v_0 * sind(angle_0) - 0) / g;
+%- We use t to calculate y in that time
+y = y_0 + t * v_0 * sind(angle_0) - 0.5 * g * t * t;
+set(handles.text_max_height, 'String', num2str(y));
