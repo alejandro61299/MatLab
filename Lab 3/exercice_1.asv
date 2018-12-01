@@ -92,12 +92,13 @@ q_b_3 =  str2double(get(handles.edit_text_q_b_3 , 'String'));
 
 q_b = [q_b_0, q_b_1, q_b_2, q_b_3];
 
-q_c = MultiplyQuat(q_b, q_a );
+q_c = MultiplyQuat( q_a, q_b );
+
 
 set(handles.edit_text_q_c_0,'String', num2str( q_c(1) ));
-set(handles.edit_text_q_c_1,'String', num2str( q_c(2) ));
-set(handles.edit_text_q_c_2,'String', num2str( q_c(3) ));
-set(handles.edit_text_q_c_3,'String', num2str( q_c(4) ));
+set(handles.edit_text_q_c_0,'String', num2str( q_c(1) ));
+set(handles.edit_text_q_c_0,'String', num2str( q_c(1) ));
+set(handles.edit_text_q_c_0,'String', num2str( q_c(1) ));
 
 
 % hObject    handle to push_buttom_continue (see GCBO)
