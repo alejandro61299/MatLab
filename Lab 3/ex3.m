@@ -22,7 +22,7 @@ function varargout = ex3(varargin)
 
 % Edit the above text to modify the response to help ex3
 
-% Last Modified by GUIDE v2.5 01-Dec-2018 19:13:53
+% Last Modified by GUIDE v2.5 01-Dec-2018 23:47:24
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -269,18 +269,18 @@ end
 
 
 
-function edit4_Callback(hObject, eventdata, handles)
-% hObject    handle to edit4 (see GCBO)
+function edit_text_u_3_Callback(hObject, eventdata, handles)
+% hObject    handle to edit_text_u_3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit4 as text
-%        str2double(get(hObject,'String')) returns contents of edit4 as a double
+% Hints: get(hObject,'String') returns contents of edit_text_u_3 as text
+%        str2double(get(hObject,'String')) returns contents of edit_text_u_3 as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit4_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit4 (see GCBO)
+function edit_text_u_3_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit_text_u_3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
