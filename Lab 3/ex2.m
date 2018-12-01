@@ -187,6 +187,9 @@ t = (-b + sqrt(b*b-4*a*c))/(2*a);
 if t <= 0
     t = (-b - sqrt(b*b-4*a*c))/(2*a);
 end
+if t <= 0
+    return
+end
 %- We use t to calculate x in that time
 x = x_0 + t * v_0 * cosd(angle_0);
 set(handles.text_range, 'String', num2str(x));
