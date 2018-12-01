@@ -176,15 +176,7 @@ x_0 = str2double(get(handles.edit_x_0, 'String'));
 y_0 = str2double(get(handles.edit_y_0, 'String'));
 v_0 = get(handles.slider_velocity, 'Value');
 angle_0 = get(handles.slider_angle, 'Value');
-
-%Calculate the max height
 g = 9.8;
-%- We get the value of t when v_y = 0;
-t = (v_0 * sind(angle_0)) / g;
-%- We use t to calculate y in that time
-y = y_0 + t * v_0 * sind(angle_0) - 0.5 * g * t * t;
-set(handles.text_max_height, 'String', num2str(y));
-max_height = y;
 
 %Calculate range
 %- We get the value of t when y(t)=0 (touching the ground)
@@ -200,12 +192,20 @@ x = x_0 + t * v_0 * cosd(angle_0);
 set(handles.text_range, 'String', num2str(x));
 range = x;
 
+%Calculate the max height
+%- We get the value of t when v_y = 0;
+t = (v_0 * sind(angle_0)) / g;
+%- We use t to calculate y in that time
+y = y_0 + t * v_0 * sind(angle_0) - 0.5 * g * t * t;
+set(handles.text_max_height, 'String', num2str(y));
+max_height = y;
+
 %Plot on the graph
 %- Calculate x and y
 x = x_0:0.1:range;
 [~, xSize] = size(x);
 for num = 1:1:xSize
-    t = (x(num) - x_0) / v_0 * cosd(angle_0);
+    t = (x(num) - x_0) / (v_0 * cosd(angle_0));
     y(num) = y_0 + t * v_0 * sind(angle_0) - 0.5 * g * t * t;
 end
 plot(x, y);
