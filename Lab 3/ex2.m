@@ -22,7 +22,7 @@ function varargout = ex2(varargin)
 
 % Edit the above text to modify the response to help ex2
 
-% Last Modified by GUIDE v2.5 01-Dec-2018 18:42:22
+% Last Modified by GUIDE v2.5 01-Dec-2018 19:35:36
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -177,8 +177,15 @@ y_0 = str2double(get(handles.edit_y_0, 'String'));
 v_0 = get(handles.slider_velocity, 'Value');
 angle_0 = get(handles.slider_angle, 'Value');
 
-%Calculate range
+%Calculate the max height
 g = 9.8;
+%- We get the value of t when v_y = 0;
+t = (v_0 * sind(angle_0)) / g;
+%- We use t to calculate y in that time
+y = y_0 + t * v_0 * sind(angle_0) - 0.5 * g * t * t;
+set(handles.text_max_height, 'String', num2str(y));
+
+%Calculate range
 %- We get the value of t when y(t)=0 (touching the ground)
 a = y_0;
 b = v_0 * sind(angle_0);
@@ -191,9 +198,14 @@ end
 x = x_0 + t * v_0 * cosd(angle_0);
 set(handles.text_range, 'String', num2str(x));
 
-%Calculate the max height
-%- We get the value of t when v_y = 0;
-t = (v_0 * sind(angle_0) - 0) / g;
-%- We use t to calculate y in that time
-y = y_0 + t * v_0 * sind(angle_0) - 0.5 * g * t * t;
-set(handles.text_max_height, 'String', num2str(y));
+%Plot on the graph
+%- Save important values
+time2fall = t;
+%- Calculate x and y
+t = 0:0.1:time2fall;
+[~, tsize] = size(t);
+for num = 1:1:tsize
+    y(num) = y_0 + t(num) * v_0 * sind(angle_0) - 0.5 * g * t(num) * t(num);
+    x(num) = x_0 + t(num) * v_0 * cosd(angle_0);
+end
+plot(x, y);
