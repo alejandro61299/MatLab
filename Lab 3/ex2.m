@@ -198,7 +198,8 @@ t = (v_0 * sind(angle_0)) / g;
 %- We use t to calculate y in that time
 y = y_0 + t * v_0 * sind(angle_0) - 0.5 * g * t * t;
 set(handles.text_max_height, 'String', num2str(y));
-max_height = y;
+yMH = y;%y max height
+xMH = x_0 + cosd(angle_0) * v_0 * t;
 
 %Plot on the graph
 %- Calculate x and y
@@ -209,3 +210,6 @@ for num = 1:1:xSize
     y(num) = y_0 + t * v_0 * sind(angle_0) - 0.5 * g * t * t;
 end
 plot(x, y);
+hold on;
+plot(xMH, yMH ,'ro');
+hold off;
