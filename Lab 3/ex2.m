@@ -191,9 +191,9 @@ max_height = y;
 a = y_0;
 b = v_0 * sind(angle_0);
 c = -0.5 * g;
-t = (-b + sqrt(b*b-2*a*c))/2*a;
+t = (-b + sqrt(b*b-4*a*c))/2*a;
 if t <= 0
-    t = (-b - sqrt(b*b-2*a*c))/2*a;
+    t = (-b - sqrt(b*b-4*a*c))/2*a;
 end
 %- We use t to calculate x in that time
 x = x_0 + t * v_0 * cosd(angle_0);
