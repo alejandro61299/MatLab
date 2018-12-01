@@ -184,6 +184,7 @@ t = (v_0 * sind(angle_0)) / g;
 %- We use t to calculate y in that time
 y = y_0 + t * v_0 * sind(angle_0) - 0.5 * g * t * t;
 set(handles.text_max_height, 'String', num2str(y));
+max_height = y;
 
 %Calculate range
 %- We get the value of t when y(t)=0 (touching the ground)
@@ -197,15 +198,14 @@ end
 %- We use t to calculate x in that time
 x = x_0 + t * v_0 * cosd(angle_0);
 set(handles.text_range, 'String', num2str(x));
+range = x;
 
 %Plot on the graph
-%- Save important values
-time2fall = t;
 %- Calculate x and y
-t = 0:0.1:time2fall;
-[~, tsize] = size(t);
-for num = 1:1:tsize
-    y(num) = y_0 + t(num) * v_0 * sind(angle_0) - 0.5 * g * t(num) * t(num);
-    x(num) = x_0 + t(num) * v_0 * cosd(angle_0);
+x = x_0:0.1:range;
+[~, xSize] = size(x);
+for num = 1:1:xSize
+    t = (x(num) - x_0) / v_0 * cosd(angle_0);
+    y(num) = y_0 + t * v_0 * sind(angle_0) - 0.5 * g * t * t;
 end
 plot(x, y);

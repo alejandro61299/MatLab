@@ -22,7 +22,7 @@ function varargout = ex2(varargin)
 
 % Edit the above text to modify the response to help ex2
 
-% Last Modified by GUIDE v2.5 01-Dec-2018 18:42:22
+% Last Modified by GUIDE v2.5 01-Dec-2018 19:35:36
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -184,6 +184,7 @@ t = (v_0 * sind(angle_0)) / g;
 %- We use t to calculate y in that time
 y = y_0 + t * v_0 * sind(angle_0) - 0.5 * g * t * t;
 set(handles.text_max_height, 'String', num2str(y));
+max_height = y;
 
 %Calculate range
 %- We get the value of t when y(t)=0 (touching the ground)
@@ -197,14 +198,14 @@ end
 %- We use t to calculate x in that time
 x = x_0 + t * v_0 * cosd(angle_0);
 set(handles.text_range, 'String', num2str(x));
+range = x;
 
 %Plot on the graph
-%- Save important values
-time2fall = t;
 %- Calculate x and y
-t = zeros(0,time2fall);
-for t = 0:0.1:time2fall
-    y(t+1) = y_0 + t * v_0 * sind(angle_0) - 0.5 * g * t * t;
-    x(t+1) = x_0 + t * v_0 * cosd(angle_0);
+x = x_0:0.1:range;
+[~, xSize] = size(x);
+for num = 1:1:xSize
+    t = (x(num) - x_0) / v_0 * cos(angle_0)
+    y(num) = y_0 + t(num) * v_0 * sind(angle_0) - 0.5 * g * t(num) * t(num);
 end
 plot(x, y);
