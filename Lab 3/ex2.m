@@ -188,12 +188,12 @@ max_height = y;
 
 %Calculate range
 %- We get the value of t when y(t)=0 (touching the ground)
-a = y_0;
+a = -0.5 * g;
 b = v_0 * sind(angle_0);
-c = -0.5 * g;
-t = (-b + sqrt(b*b-4*a*c))/2*a;
+c = y_0;
+t = (-b + sqrt(b*b-4*a*c))/(2*a);
 if t <= 0
-    t = (-b - sqrt(b*b-4*a*c))/2*a;
+    t = (-b - sqrt(b*b-4*a*c))/(2*a);
 end
 %- We use t to calculate x in that time
 x = x_0 + t * v_0 * cosd(angle_0);
