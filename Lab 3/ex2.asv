@@ -22,7 +22,7 @@ function varargout = ex2(varargin)
 
 % Edit the above text to modify the response to help ex2
 
-% Last Modified by GUIDE v2.5 22-Nov-2018 18:30:45
+% Last Modified by GUIDE v2.5 01-Dec-2018 18:42:22
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -97,18 +97,19 @@ end
 
 
 % --- Executes on slider movement.
-function slider1_Callback(hObject, eventdata, handles)
-% hObject    handle to slider1 (see GCBO)
+function slider_velocity_Callback(hObject, eventdata, handles)
+% hObject    handle to slider_velocity (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
-
+velocity = get(handles.slider_velocity, 'Value');
+set(handles.slider_velocity, 'String', velocity);
 
 % --- Executes during object creation, after setting all properties.
-function slider1_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to slider1 (see GCBO)
+function slider_velocity_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to slider_velocity (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -142,8 +143,8 @@ end
 
 
 % --- Executes on slider movement.
-function slider3_Callback(hObject, eventdata, handles)
-% hObject    handle to slider3 (see GCBO)
+function slider_angle_Callback(hObject, eventdata, handles)
+% hObject    handle to slider_angle (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
@@ -152,8 +153,8 @@ function slider3_Callback(hObject, eventdata, handles)
 
 
 % --- Executes during object creation, after setting all properties.
-function slider3_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to slider3 (see GCBO)
+function slider_angle_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to slider_angle (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -168,5 +169,21 @@ function pushbutton_calculate_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton_calculate (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-x_0 = get(handles.edit_x_0, 'String');
+x_0 = str2dobule(get(handles.edit_x_0, 'String'));
+y_0 = str2dobule(get(handles.edit_y_0, 'String'));
+v_0 = str2dobule(get(handles.slider_velocity, 'Value'));
+angle_0 = str2double(get(handles.slider_angle, 'Value'));
+g = 9.8;
+
+%Calculate range
+%- We get the value of t when y(t)=0 (touching the ground)
+a = y_0;
+b = v_0 * sind(angle_0);
+c = -0.5 * g;
+t = (-b + sqrt(b*b-2*a*c))/2*a;
+if t <= 0
+    t = (-b - sqrt(b*b-2*a*c))/2*a;
 end
+%- We use t to calculate x in that time
+x = x_0 + t * v_0 * cosd(angle_0);
+set(handles.text_range, 'String', num2str(x));
