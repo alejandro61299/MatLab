@@ -43,6 +43,22 @@ else
 end
 % End initialization code - DO NOT EDIT
 
+point1 = [1,0,0];
+point2 = [0,1,0];
+point3 = [0 0 1];
+origin = [0,0,0];
+
+hold on;
+plot3([origin(1) point1(1)],[origin(2) point1(2)],[origin(3) point1(3)],'LineWidth',5);
+hold on;
+plot3([origin(1) point2(1)],[origin(2) point2(2)],[origin(3) point2(3)],'LineWidth',5);
+hold on;
+plot3([origin(1) point3(1)],[origin(2) point3(2)],[origin(3) point3(3)],'LineWidth',5);
+grid off;
+axis off;
+set(gca,'CameraPosition',[2 2 2]);
+
+
 
 % --- Executes just before ex3 is made visible.
 function ex3_OpeningFcn(hObject, eventdata, handles, varargin)
@@ -83,6 +99,8 @@ function slider_angle_Callback(hObject, eventdata, handles)
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
 angle = get(handles.slider_angle, 'Value');
 set(handles.text_angle, 'String', num2str(angle));
+
+
 
 
 % --- Executes during object creation, after setting all properties.

@@ -205,7 +205,7 @@ range = x;
 x = x_0:0.1:range;
 [~, xSize] = size(x);
 for num = 1:1:xSize
-    t = (x(num) - x_0) / v_0 * cosd(angle_0 );
+    t = (x(num) - x_0) / (v_0 * cosd(angle_0) );
     y(num) = y_0 + t * v_0 * sind(angle_0) - 0.5 * g * t * t;
 end
 plot(x, y);
