@@ -168,12 +168,5 @@ function pushbutton_calculate_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton_calculate (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-x_0 = str2dobule(get(handles.edit_x_0, 'String'));
-y_0 = str2dobule(get(handles.edit_y_0, 'String'));
-v_0 = str2dobule(get(handles.slider_velocity, 'Value'));
-angle_0 = str2double(get(handles.slider_angle, 'Value'));
-
-%Calculate range
-%- We get the value of t when y(t)=0 (touching the ground)
-
+x_0 = get(handles.edit_x_0, 'String');
 end
