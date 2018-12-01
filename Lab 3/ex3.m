@@ -42,26 +42,34 @@ else
     gui_mainfcn(gui_State, varargin{:});
 end
 % End initialization code - DO NOT EDIT
+%Plot the axes
+       %Initial coords      Final coords
+ivec = [0,                  1;
+        0,                  0;
+        0,                  0];
 
-point1 = [1,0,0];
-point2 = [0,1,0];
-point3 = [0 0 1];
-origin = [0,0,0];
+jvec = [0,                  0;
+        0,                  1;
+        0,                  0];
 
-hold on;
-plot3([origin(1) point1(1)],[origin(2) point1(2)],[origin(3) point1(3)],'LineWidth',5);
-hold on;
-plot3([origin(1) point2(1)],[origin(2) point2(2)],[origin(3) point2(3)],'LineWidth',5);
-hold on;
-plot3([origin(1) point3(1)],[origin(2) point3(2)],[origin(3) point3(3)],'LineWidth',5);
+kvec = [0,                  0;
+        0,                  0;
+        0,                  1];
+x = 1;
+y = 2;
+z = 3;
 
+plot3(ivec(x,:),ivec(y,:),ivec(z,:),'LineWidth',5);
+hold on;
+plot3(jvec(x,:),jvec(y,:),jvec(z,:),'LineWidth',5);
+hold on;
+plot3(kvec(x,:),kvec(y,:),kvec(z,:),'LineWidth',5);
+hold on;
 grid off;
 axis off;
 pbaspect([1 1 1]);
 daspect([1 1 1]);
 set(gca,'CameraPosition',[2 2 2]);
-
-
 
 % --- Executes just before ex3 is made visible.
 function ex3_OpeningFcn(hObject, eventdata, handles, varargin)
