@@ -42,6 +42,7 @@ else
     gui_mainfcn(gui_State, varargin{:});
 end
 % End initialization code - DO NOT EDIT
+
 %Plot the axes
        %Initial coords      Final coords
 ivec = [0,                  1;
@@ -59,16 +60,40 @@ x = 1;
 y = 2;
 z = 3;
 
-
+plot3(ivec(x,:),ivec(y,:),ivec(z,:),'LineWidth',5);
+hold on;
+plot3(jvec(x,:),jvec(y,:),jvec(z,:),'LineWidth',5);
+hold on;
+plot3(kvec(x,:),kvec(y,:),kvec(z,:),'LineWidth',5);
+hold on;
 grid off;
 axis off;
 pbaspect([1 1 1]);
 daspect([1 1 1]);
 set(gca,'CameraPosition',[2 2 2]);
-plot3(ivec(x,:),ivec(y,:),ivec(z,:),'LineWidth',5);
-hold on;
-plot3(jvec(x,:),jvec(y,:),jvec(z,:),'LineWidth',5);
-plot3(kvec(x,:),kvec(y,:),kvec(z,:),'LineWidth',5);
+
+angle = get(handles.slider_angle, 'Value');
+uvec = [str2double(get(handles.edit_text_u_1));
+        str2double(get(handles.edit_text_u_2));
+        str2double(get(handles.edit_text_u_3))];
+uvec = uvec / norm(uvec);
+
+uvec = sind(angle * 0.5) * uvec;
+uquat = [cosd(angle * 0.5);
+        uvec(1);
+        uvec(2);
+        uvec(3)];
+
+vquat = [0;
+         str2double(get(handles.edit_text_v_1));
+         str2double(get(handles.edit_text_v_2));
+         str2double(get(handles.edit_text_v_3))];
+rquat = MultiplyQuat(uquat, vquat);
+uquat(2:end) = -uquat(2:end);
+rquat = MultiplyQuat(rquat, uquat);
+rvec = rquat(2:4);
+plot3(u(x,:),u(y,:),u(z,:),'LineWidth',5);
+
 % --- Executes just before ex3 is made visible.
 function ex3_OpeningFcn(hObject, eventdata, handles, varargin)
 % This function has no output args, see OutputFcn.

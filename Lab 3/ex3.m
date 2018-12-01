@@ -42,6 +42,7 @@ else
     gui_mainfcn(gui_State, varargin{:});
 end
 % End initialization code - DO NOT EDIT
+
 %Plot the axes
        %Initial coords      Final coords
 ivec = [0,                  1;
@@ -70,6 +71,32 @@ axis off;
 pbaspect([1 1 1]);
 daspect([1 1 1]);
 set(gca,'CameraPosition',[2 2 2]);
+
+%Calculate and plot the vector
+%- Get the vectors and transform them to quaternions before multiplying
+angle = get(handles.slider_angle, 'Value');
+uvec = [str2double(get(handles.edit_text_u_1));
+        str2double(get(handles.edit_text_u_2));
+        str2double(get(handles.edit_text_u_3))];
+uvec = uvec / norm(uvec);
+uvec = sind(angle * 0.5) * uvec;
+uquat = [cosd(angle * 0.5);
+        uvec(1);
+        uvec(2);
+        uvec(3)];
+vquat = [0;
+         str2double(get(handles.edit_text_v_1));
+         str2double(get(handles.edit_text_v_2));
+         str2double(get(handles.edit_text_v_3))];
+%- Multiply the quaternions
+rquat = MultiplyQuat(uquat, vquat);
+uquat(2:end) = -uquat(2:end);
+rquat = MultiplyQuat(rquat, uquat);
+%- Extract the resulting vector
+rvec = [0,                  rquat(2);
+        0,                  rquat(3);
+        0,                  rquat(4)];
+plot3(rvec(x,:),rvec(y,:),rvec(z,:),'LineWidth',5);
 
 % --- Executes just before ex3 is made visible.
 function ex3_OpeningFcn(hObject, eventdata, handles, varargin)
